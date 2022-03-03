@@ -31,8 +31,21 @@ void    FInsert(List *plist, LData data)
 
 void    SInsert(List *plist, LData data)
 {
-    Node *newNode = (Node *)malloc(sizeof(Node));
+    Node    *newNode = (Node *)malloc(sizeof(Node));
+    Node    *prev;
+
     newNode->data = data;
+    prev = plist->head;
+
+    while(prev->next != NULL && plist->comp(data, prev->next->data) != 0)
+    {
+        prev = prev->next;
+    }
+
+    newNode->next = prev->next;
+    prev->next = newNode;
+
+    (plist->numOfData)++;
 }
 
 int     LFirst(List *plist, LData *pdata)
@@ -64,13 +77,13 @@ LData   LRemove(List *plist)
     Node    *remove;
     LData   removeData;
 
-    remove = plist->cur;
-    removeData = plist->cur->data;
+    remove = plist->cur;            //remove 할 node
+    removeData = plist->cur->data;  //remove 할 node의 data
 
     plist->before->next = plist->cur->next;
     plist->cur = plist->before;
 
-    free(remove);
+    free(remove);                   //메모리 해제를 통한 remove
     (plist->numOfData)--;
 
     return(removeData);
@@ -83,5 +96,5 @@ int     LCount(List *plist)
 
 void    SetSorRule(List *plist, int (*comp)(LData d1, LData d2))
 {
-
+    plist->comp = comp;
 }
