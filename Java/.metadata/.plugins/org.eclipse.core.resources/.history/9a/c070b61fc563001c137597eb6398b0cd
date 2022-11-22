@@ -1,0 +1,15 @@
+package binary;
+
+public class VariableEx2 {
+
+	public static void main(String[] args) {
+		
+		int num1 = 10;
+		long num2 = 10000000000L;	
+		double num3 = 10000000000D;		
+		char ch = 'A';
+		char ch1 = 65;
+		
+		
+	}
+}

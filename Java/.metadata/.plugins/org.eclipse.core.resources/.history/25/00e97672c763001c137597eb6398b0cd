@@ -1,0 +1,23 @@
+package binary;
+
+public class Constant {
+
+	public static void main(String[] args) {
+
+		final int MAX_NUM = 100;
+		final double PI = 3.14;
+		
+		//MAX_NUM = 3;	final로 선언 => 상수 => 바뀔 수 없음
+		
+		System.out.println(MAX_NUM);
+		System.out.println(PI);
+		
+		final int STUDENT_NUM = 30;
+		int num = 0;
+		if(num != STUDENT_NUM) {}
+		
+		System.out.println(STUDENT_NUM);
+		
+	}
+
+}

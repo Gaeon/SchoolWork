@@ -1,0 +1,50 @@
+package binary;
+
+public class VariableEx2 {
+
+	public static void main(String[] args) {
+		
+		//정수자료형
+		int num = 10;
+		long lNum = 10000000000L;	
+		//실수자료형
+		float fNum = 3.14F;
+		double dNum = 3.14;
+		//문자열 자료형
+		char ch = 'A';
+		char ch1 = 65;
+		int ch2 = 65;
+		String str = "Hello";
+		//논리형
+		boolean TF = true;
+		//자료형 없이 사용하기
+		var var = 10;
+		var var1 = 10.0;
+		var var2 = 'A';
+		var var3 = "Hello";
+		var var4 = true;
+		
+		
+		System.out.println(num);
+		System.out.println(lNum);
+		
+		System.out.println(fNum);
+		System.out.println(dNum);
+
+		System.out.println(ch);
+		System.out.println(ch1);
+		System.out.println((char)ch2);
+		
+		System.out.println(TF);
+		
+		//자료형 추론
+		System.out.println(var);
+		System.out.println(var1);
+		System.out.println(var2);
+		System.out.println(var3);
+		System.out.println(var4);
+		
+
+		
+	}
+}

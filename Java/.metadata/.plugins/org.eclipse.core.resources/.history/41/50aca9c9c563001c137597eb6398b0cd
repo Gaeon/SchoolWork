@@ -1,0 +1,21 @@
+package binary;
+
+public class VariableEx2 {
+
+	public static void main(String[] args) {
+		
+		int num1 = 10;
+		long num2 = 10000000000L;	
+		double num3 = 10000000000D;		
+		char ch = 'A';
+		char ch1 = 65;
+		int ch2 = 65;
+		
+		System.out.println(num1);
+		System.out.println(num2);
+		System.out.println(num3);
+		System.out.println(ch);
+		System.out.println(ch1);
+		System.out.println((char)ch2);
+	}
+}

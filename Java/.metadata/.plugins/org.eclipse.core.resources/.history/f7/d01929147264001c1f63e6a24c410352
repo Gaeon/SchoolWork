@@ -1,0 +1,15 @@
+package classpart;
+
+public class Student {
+
+	public static void main(String[] args) {
+		//¼Ó¼º
+		int studentID;
+		String studentName;
+		int grade;
+		String address;
+		
+		
+	}
+
+}

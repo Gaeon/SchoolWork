@@ -1,0 +1,21 @@
+package assignment;
+
+public class OperationEx5 {
+
+	public static void main(String[] args) {
+
+		int num1 = 5;
+		int num2 = 10;
+		
+		int result = num1&num2;
+		int result2 = num1|num2;
+		System.out.println(result);
+		System.out.println(result2);
+		
+		int result3 = num1<<2; //num1*2*2;
+		System.out.println(result3);
+		System.out.println(num1>>2); //num1/2/2;
+				
+	}
+
+}
