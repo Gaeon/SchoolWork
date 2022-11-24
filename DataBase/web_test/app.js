@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//mysql.js 파일 요청 및 서버 DB 연결
+var mysqlDB = require('./mysqlDB');
+mysqlDB.connect();
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
