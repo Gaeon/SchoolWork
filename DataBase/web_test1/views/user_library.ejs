@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>user library</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      table{
+          border: 2px solid; border-collapse: collapse; text-align: center;
+      }
+      th, td{border: 1px solid; padding: 10px 5px;}
+  </style>
+  </head>
+  <body>
+      <h1><%= id %>님 환영합니다.</h1>
+      <h2><%= id %>님의 도서 대여 현황은 다음과 같습니다.</h2>
+      <hr>
+      <table>
+        <tr>
+            <td>번호</td>            
+            <td>책이름</td>
+            <td>글쓴이</td>
+            <td>대여일</td>
+            <td>반납예정일</td>
+            <td>반납하기</td>
+        </tr>
+        <% for(var i = 0; i < items.length; i++){ %> 
+          <tr>
+            <td> <%= items[i].history_id %> </td>
+            <td> <%= items[i].b_name %> </td>
+            <td> <%= items[i].author %> </td>
+            <td> <%= items[i].rent_day %> </td>
+            <td> <%= items[i].return_day %> </td>
+            <td>반납하기</td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

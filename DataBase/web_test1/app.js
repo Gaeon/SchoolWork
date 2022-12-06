@@ -26,9 +26,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-//
+//show_all_data
 var show_all_book_data = require('./routes/show_all_book_data');
 app.use('/show_all_book_data', show_all_book_data);
+
+//login
+var login = require('./routes/login');
+app.use('/login', login);
+
+//SM_library
+var SM_library = require('./routes/SM_library');
+app.use('/SM_library', SM_library);
+
+//search
+var search = require('./routes/search');
+app.use('/search', search);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
