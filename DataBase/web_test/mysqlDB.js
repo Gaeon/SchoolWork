@@ -7,8 +7,8 @@ var connection = mysqlDB.createConnection({
     post: '3306',
     user: 'user_20201233',
     password: '202012333',
-    databse: 'user_202012333'
+    database: 'user_202012333'
 });
 
-//mysql 모듈 내보내기기
-mudule.exports = connection;
+//mysql 모듈 내보내기
+module.exports = connection;

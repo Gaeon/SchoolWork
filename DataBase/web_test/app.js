@@ -5,8 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 //mysql.js 파일 요청 및 서버 DB 연결
-var mysqlDB = require('./mysqlDB');
-mysqlDB.connect();
+//var mysqlDB = require('./mysqlDB');
+//mysqlDB.connect();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -25,6 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+//var show_all_book_data = require('./routes/show_all_book_data');
+//app.use('/show_all_book_data', show_all_book_data);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
