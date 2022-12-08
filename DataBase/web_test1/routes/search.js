@@ -33,7 +33,7 @@ router.post('/', function (req, res, next) {
     * rows: 쿼리 결과
     * fields: 테이블의 필드 정보
     */
-    mysqlDB.query('select * from SMBookInfo where b_name=?',[search_name], function (err, rows, fields){
+    mysqlDB.query('select * from SMBookInfo where b_name REGEXP ?',[search_name], function (err, rows, fields){
 
         if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
             if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
@@ -44,9 +44,6 @@ router.post('/', function (req, res, next) {
                 var auther=rows[0]['auther'];
                 var publisher=rows[0]['publisher'];
                 //console.log(rows)
-                            
-                //리소스 보냄
-                
 
                 mysqlDB.query('select * from SMBookBorrowingHistory where b_code=?',[b_code], function (err, rows, fields){
                     if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
@@ -58,19 +55,23 @@ router.post('/', function (req, res, next) {
                             //console.log(rows)    
             
                             //리소스 보냄
-                            res.send('찾으시는 책 정보는 다음과 같습니다 <hr><br>' +
-                                     '코드:'+b_code+'<br>'+
-                                     '제목:'+b_name+'<br>'+
-                                     '저자:'+auther+'<br>'+
-                                     '출판사:'+publisher+'<br><br>'+
-                                     '대출 가능 여부:'+is_return+'<br>');            
+                            if(is_return == 'N')
+                            {
+                                res.send(search_name + '에 대한 결과는 다음과 같습니다<br><br><hr><br>' +
+                                        '코드:' + b_code + '<br>' +
+                                        '제목:' + b_name + '<br>' +
+                                        '저자:' + auther + '<br>' +
+                                        '출판사:' + publisher + '<br><br>' +
+                                        '대출 가능 여부:' + is_return + '<br>' + 
+                                        '반납 예정 날짜:' + return_day);   
+                            }         
                         } else{
-                            res.send('찾으시는 책 정보는 다음과 같습니다 <hr><br>' +
-                            '코드:'+b_code+'<br>'+
-                            '제목:'+b_name+'<br>'+
-                            '저자:'+auther+'<br>'+
-                            '출판사:'+publisher+'<br><br>'+
-                            '대출 가능 여부: Y<br>');
+                            res.send(search_name + '에 대한 결과는 다음과 같습니다<br><br><hr><br>' +
+                            '코드:' + b_code + '<br>' +
+                            '제목:' + b_name + '<br>' +
+                            '저자:' + auther + '<br>' +
+                            '출판사:' + publisher + '<br><br>' +
+                            '대출 가능 여부: Y');
                         }
                     } else{
                         res.send('error : ' + err);
