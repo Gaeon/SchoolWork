@@ -53,7 +53,6 @@ router.post('/', function (req, res, next) {
                     '출판사:'+publisher+'<br>');
 
                 // mysqlDB.query('select * from SMBookBorrowingHistory where b_code=?',[b_code], function (err, rows, fields){
-            
                 //     if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
                 //         if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
                             
@@ -68,6 +67,8 @@ router.post('/', function (req, res, next) {
                 //         } else{
                 //             res.send('대출 가능 여부: Y<br>');
                 //         }
+                //     } else{
+                //         res.send('error : ' + err);
                 //     }
                 // });
 
@@ -79,6 +80,27 @@ router.post('/', function (req, res, next) {
             res.send('error : ' + err);
         }
     });
+
+    mysqlDB.query('select * from SMBookBorrowingHistory where b_code=(select b_code from SM_BookInfo where b_name=?)',[search_name], function (err, rows, fields){
+        if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
+            if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
+                
+                //회원정보 각 변수에 저장
+                var return_day=rows[0]['return_day'];
+                var is_return=rows[0]['is_return'];
+                //console.log(rows)    
+
+                //리소스 보냄
+                res.send('대출 가능 여부:'+is_return+'<br');
+
+            } else{
+                res.send('대출 가능 여부: Y<br>');
+            }
+        } else{
+            res.send('error : ' + err);
+        }
+    });
+
 });
 
 module.exports = router;
