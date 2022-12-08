@@ -46,31 +46,36 @@ router.post('/', function (req, res, next) {
                 //console.log(rows)
                             
                 //리소스 보냄
-                res.send('찾으시는 책 정보는 다음과 같습니다 <hr><br>' +
-                    '코드:'+b_code+'<br>'+
-                    '제목:'+b_name+'<br>'+
-                    '저자:'+auther+'<br>'+
-                    '출판사:'+publisher+'<br>');
+                
 
-                // mysqlDB.query('select * from SMBookBorrowingHistory where b_code=?',[b_code], function (err, rows, fields){
-                //     if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
-                //         if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
+                mysqlDB.query('select * from SMBookBorrowingHistory where b_code=?',[b_code], function (err, rows, fields){
+                    if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
+                        if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
                             
-                //             //회원정보 각 변수에 저장
-                //             var return_day=rows[0]['return_day'];
-                //             var is_return=rows[0]['is_return'];
-                //             //console.log(rows)    
+                            //회원정보 각 변수에 저장
+                            var return_day=rows[0]['return_day'];
+                            var is_return=rows[0]['is_return'];
+                            //console.log(rows)    
             
-                //             //리소스 보냄
-                //             res.send('대출 가능 여부:'+is_return+'<br');
-            
-                //         } else{
-                //             res.send('대출 가능 여부: Y<br>');
-                //         }
-                //     } else{
-                //         res.send('error : ' + err);
-                //     }
-                // });
+                            //리소스 보냄
+                            res.send('찾으시는 책 정보는 다음과 같습니다 <hr><br>' +
+                                     '코드:'+b_code+'<br>'+
+                                     '제목:'+b_name+'<br>'+
+                                     '저자:'+auther+'<br>'+
+                                     '출판사:'+publisher+'<br><br>'+
+                                     '대출 가능 여부:'+is_return+'<br>');            
+                        } else{
+                            res.send('찾으시는 책 정보는 다음과 같습니다 <hr><br>' +
+                            '코드:'+b_code+'<br>'+
+                            '제목:'+b_name+'<br>'+
+                            '저자:'+auther+'<br>'+
+                            '출판사:'+publisher+'<br><br>'+
+                            '대출 가능 여부: Y<br>');
+                        }
+                    } else{
+                        res.send('error : ' + err);
+                    }
+                });
 
             } else {                    //row가 없으면 no data 출력
                 res.send(search_name + '에 대한 결과가 없습니다.');
@@ -81,25 +86,25 @@ router.post('/', function (req, res, next) {
         }
     });
 
-    mysqlDB.query('select * from SMBookBorrowingHistory where b_code=(select b_code from SM_BookInfo where b_name=?)',[search_name], function (err, rows, fields){
-        if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
-            if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
+    // mysqlDB.query('select * from SMBookBorrowingHistory where b_code=(select b_code from SM_BookInfo where b_name=?)',[search_name], function (err, rows, fields){
+    //     if (!err) {                         //오류가 없으면 웹 페이지에 값 출력
+    //         if (rows[0]!=undefined) {       //row가 존재하면 책정보 출력
                 
-                //회원정보 각 변수에 저장
-                var return_day=rows[0]['return_day'];
-                var is_return=rows[0]['is_return'];
-                //console.log(rows)    
+    //             //회원정보 각 변수에 저장
+    //             var return_day=rows[0]['return_day'];
+    //             var is_return=rows[0]['is_return'];
+    //             //console.log(rows)    
 
-                //리소스 보냄
-                res.send('대출 가능 여부:'+is_return+'<br');
+    //             //리소스 보냄
+    //             res.send('대출 가능 여부:'+is_return+'<br');
 
-            } else{
-                res.send('대출 가능 여부: Y<br>');
-            }
-        } else{
-            res.send('error : ' + err);
-        }
-    });
+    //         } else{
+    //             res.send('대출 가능 여부: Y<br>');
+    //         }
+    //     } else{
+    //         res.send('error : ' + err);
+    //     }
+    // });
 
 });
 
